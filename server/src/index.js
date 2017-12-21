@@ -6,9 +6,11 @@ const envSpecificMiddlewares = []
 
 if (process.env.NODE_ENV === 'production') {
   const serveStatic = require('serve-static')
+  const { prerenderClient } = require('./prerenderClient')
 
   envSpecificMiddlewares.push(
-    serveStatic('public')
+    serveStatic('public'),
+    prerenderClient()
   )
 }
 

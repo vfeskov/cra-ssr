@@ -18,12 +18,16 @@ export class AppComponent extends Component {
   }
 
   componentDidMount () {
-    this.props.fetchPosts()
+    const { inited, fetchPosts } = this.props
+    if (!inited) { fetchPosts() }
   }
 }
 
 export const App = connect(
-  state => ({ posts: state.posts }),
+  state => ({
+    posts: state.posts,
+    inited: state.inited
+  }),
   dispatch => bindActionCreators(actionCreators, dispatch)
 )(AppComponent)
 
