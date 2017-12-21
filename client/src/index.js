@@ -3,15 +3,13 @@ import 'isomorphic-fetch'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import { unregister } from './registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker'
 import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import { root } from './reducers'
 
-const initState = window.__INITIAL_STATE__ && JSON.parse(window.__INITIAL_STATE__)
-
-const store = createStore(root, initState, applyMiddleware(thunkMiddleware))
+const store = createStore(root, applyMiddleware(thunkMiddleware))
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,4 +18,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-unregister()
+registerServiceWorker()

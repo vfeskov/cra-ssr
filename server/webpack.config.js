@@ -11,15 +11,6 @@ const config = {
   },
   module: {
     loaders: [
-      {
-        test: /\.jsx?$/,
-        include: path.resolve(__dirname, '..', 'client', 'src'),
-        loader: require.resolve('babel-loader'),
-        options: {
-          babelrc: false,
-          presets: [require.resolve('babel-preset-react-app')]
-        }
-      },
       { test: /\.json$/, loader: 'json-loader' }
     ]
   },

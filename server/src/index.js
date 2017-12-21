@@ -1,11 +1,10 @@
 import http from 'http'
 import serveStatic from 'serve-static'
-import { api, index, error } from './handlers'
+import { api, error } from './handlers'
 import { chain } from './util'
 
 const envSpecificHandlers = process.env.NODE_ENV !== 'production' ? [] : [
-  serveStatic('public'),
-  index()
+  serveStatic('public')
 ]
 
 const handlers = [
