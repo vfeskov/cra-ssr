@@ -1,19 +1,23 @@
 import http from 'http'
-import serveStatic from 'serve-static'
-import { api, error } from './handlers'
+import { api, error } from './middlewares'
 import { chain } from './util'
 
-const envSpecificHandlers = process.env.NODE_ENV !== 'production' ? [] : [
-  serveStatic('public')
-]
+const envSpecificMiddlewares = []
 
-const handlers = [
+if (process.env.NODE_ENV === 'production') {
+  const serveStatic = require('serve-static')
+
+  envSpecificMiddlewares.push(
+    serveStatic('public')
+  )
+}
+
+const middlewares = [
   api,
-  ...envSpecificHandlers,
+  ...envSpecificMiddlewares,
   error
 ]
 
-const server = http.createServer(chain(handlers))
+const server = http.createServer(chain(middlewares))
 
 server.listen(process.env.PORT || 3000)
-
