@@ -3,7 +3,7 @@ import 'isomorphic-fetch'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import { unregister } from './registerServiceWorker'
+import registerServiceWorker from './registerServiceWorker'
 import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
@@ -20,4 +20,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-unregister()
+registerServiceWorker()
