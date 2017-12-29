@@ -9,6 +9,9 @@ const workbox = new WorkboxSW({
 // from `build/` folder when `generate-sw` script runs
 workbox.precache([])
 
+// cache index.html when service worker gets installed
+self.addEventListener('install', updateIndexCache)
+
 // the listener catches all http requests coming from
 // the browser at my website
 self.addEventListener('fetch', event => {
