@@ -1,23 +1,24 @@
 import serveStatic from 'serve-static'
 import fs from 'fs'
-import db from './db.json'
+import loadDb from './loadDb'
 import { renderToStrings } from '../../client/src/renderToStrings'
 
 export function prerenderClient () {
   const layout = fs.readFileSync('./public/layout.html').toString()
 
-  return (req, res, next) => {
+  return async (req, res, next) => {
     if (req.method !== 'GET') { return next() }
 
-    const app = renderToStrings(db)
+    const db = await loadDb()
+    const { html, state } = renderToStrings(db)
     const content = layout
       .replace(
         '<div id="root"></div>',
-        `<div id="root">${app.html}</div>`
+        `<div id="root">${html}</div>`
       )
       .replace(
         '</head>',
-        `<script>window.__INIT_STATE__=${app.state}</script></head>`
+        `<script>window.__INIT_STATE__=${state}</script></head>`
       )
     res.writeHead(200, {
       'Content-Type': 'text/html',

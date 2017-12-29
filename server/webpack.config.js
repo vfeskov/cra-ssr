@@ -20,8 +20,7 @@ const config = {
           babelrc: false,
           presets: [require.resolve('babel-preset-react-app')]
         }
-      },
-      { test: /\.json$/, loader: 'json-loader' }
+      }
     ]
   },
   plugins: [

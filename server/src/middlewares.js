@@ -1,9 +1,9 @@
-import db from './db.json'
-import fs from 'fs'
 import finalhandler from 'finalhandler'
+import loadDb from './loadDb'
 
-export function api ({ method, url }, res, next) {
+export async function api ({ method, url }, res, next) {
   if (method !== 'GET' || url !== '/api/posts') { return next() }
+  const db = await loadDb()
   res.writeHead(200, { 'Content-Type': 'application/json' })
   res.end(JSON.stringify(db))
 }
