@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: 'crassr-web'
+    restart: 'always'
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+
+  # mongodb:
+  #   image: mongo:latest
+  #   container_name: "crassr-mongodb"
+  #   environment:
+  #     - MONGO_DATA_DIR=/data/db
+  #     - MONGO_LOG_DIR=/dev/null
+  #   volumes:
+  #     - ./path/in/project/to/persist/mongodb/data/db:/data/db
+  #   ports:
+  #     - "27017:27017"
+  #   command: mongod --smallfiles --logpath=/dev/null # --quiet
+
+  # rabbitmq:
+  #   image: rabbitmq
+  #   container_name: "crassr-rabbitmq"
+  #   ports:
+  #     - "5672:5672"
+  #   expose:
+  #     - "5672"
