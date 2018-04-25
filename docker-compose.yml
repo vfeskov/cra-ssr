@@ -25,8 +25,8 @@ services:
 
   # rabbitmq:
   #   image: rabbitmq
+  #   container_name: "crassr-rabbitmq"
   #   ports:
   #     - "5672:5672"
   #   expose:
   #     - "5672"
-  
