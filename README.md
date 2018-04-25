@@ -16,6 +16,9 @@ When you're ready to shut down your Docker containers:
 
 `$ docker-compose down`
 
+## Docker-compose? Why?
+Why would we want to use [docker-compose](https://docs.docker.com/compose/overview/)? Imagine the case we want to experiment with incorporating other services (containers) into our app - such as MongoDB, MySQL, Redis...[docker-compose](https://docs.docker.com/compose/overview/) allows us to spin up and spin down these containers as a group.
+
 ## Initial setup and configuration
 ### Install Docker Community Edition
 If you do not have Docker installed on your machine, please download and install [Docker Community Edition](https://www.docker.com/community-edition) for your development machine.
